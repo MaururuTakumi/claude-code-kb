@@ -11,14 +11,10 @@
             "id": "93453944e3d1f611",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Architecture/CLAUDE.md Design.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "CLAUDE.md Design"
+              "title": "新規タブ"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Architecture/CLAUDE.md Design.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "CLAUDE.md Designへのバックリンク"
+              "title": "バックリンク"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Architecture/CLAUDE.md Design.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "CLAUDE.md Designからのアウトゴーイングリンク"
+              "title": "アウトゴーイングリンク"
             }
           },
           {
@@ -156,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Architecture/CLAUDE.md Design.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "CLAUDE.md Designのアウトライン"
+              "title": "アウトライン"
             }
           }
         ]
@@ -187,6 +180,21 @@
   },
   "active": "93453944e3d1f611",
   "lastOpenFiles": [
+    "_templates/PROJECT-SETUP.md",
+    "Architecture/CLAUDE.md Design.md",
+    "05-Skills",
+    "04-Operations/KB Lifecycle.md",
+    "04-Operations",
+    "03-Troubleshooting/Version Bugs.md",
+    "03-Troubleshooting/MCP Crash.md",
+    "03-Troubleshooting/Auth Expiry.md",
+    "03-Troubleshooting",
+    "02-Patterns",
+    "01-Architecture/Two-Phase Execution.md",
+    "01-Architecture/Model Selection.md",
+    "01-Architecture/CLAUDE.md Design.md",
+    "01-Architecture",
+    "QUICK-REF.md",
     "Operations/KB Lifecycle.md",
     "Sources/community/2026-03-26-thariq-claude-code-tips.md"
   ]
