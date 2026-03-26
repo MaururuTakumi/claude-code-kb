@@ -1,0 +1,45 @@
+#!/bin/bash
+# KBセキュリティチェック — commit前に自動実行
+
+ISSUES=0
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.md$')
+
+if [ -z "$FILES" ]; then
+    exit 0
+fi
+
+# APIキー・トークンパターン
+FOUND=$(echo "$FILES" | xargs grep -lE "sk-[a-zA-Z0-9]{20,}|AKIA[A-Z0-9]{16}|ghp_[a-zA-Z0-9]{36}|xoxb-|xoxp-" 2>/dev/null)
+if [ -n "$FOUND" ]; then
+    echo "🚨 APIキー/トークンが含まれています: $FOUND"
+    ISSUES=1
+fi
+
+# 個人パス
+FOUND=$(echo "$FILES" | xargs grep -lE "/Users/[a-z]+/|/home/[a-z]+/" 2>/dev/null)
+if [ -n "$FOUND" ]; then
+    echo "🚨 個人パスが含まれています: $FOUND"
+    ISSUES=1
+fi
+
+# メールアドレス（例外: example.comは許可）
+FOUND=$(echo "$FILES" | xargs grep -lE "[a-zA-Z0-9._%+-]+@(gmail|yahoo|outlook|hotmail|icloud|ltdhonkoma)\.[a-zA-Z]{2,}" 2>/dev/null)
+if [ -n "$FOUND" ]; then
+    echo "🚨 メールアドレスが含まれています: $FOUND"
+    ISSUES=1
+fi
+
+# Prompt injection パターン
+FOUND=$(echo "$FILES" | xargs grep -liE "ignore previous instructions|you are now|act as a|<system>|</system>|override.*instructions" 2>/dev/null)
+if [ -n "$FOUND" ]; then
+    echo "🚨 Prompt injectionパターンを検出: $FOUND"
+    ISSUES=1
+fi
+
+if [ $ISSUES -gt 0 ]; then
+    echo ""
+    echo "❌ セキュリティチェック失敗。修正してから再commitしてください。"
+    exit 1
+fi
+
+exit 0
