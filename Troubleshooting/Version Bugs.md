@@ -1,0 +1,44 @@
+# Version Bugs — バージョン別の既知バグ
+
+> Claude Codeのバージョンアップで壊れることがある。  
+> ダウングレードの選択肢を常に持っておく。
+
+## バージョン管理
+
+```bash
+# 利用可能なバージョン確認
+ls /Users/takumihayashi/.local/share/claude/versions/
+
+# バージョン切り替え（シンボリックリンク）
+ln -sf /Users/takumihayashi/.local/share/claude/versions/X.Y.Z /Users/takumihayashi/.local/bin/claude
+
+# 現在のバージョン確認
+claude --version
+```
+
+## 既知バグ一覧
+
+### v2.1.83 — `-p` モード無応答バグ
+- **発見日**: 2026-03-26
+- **症状**: `claude -p "..."` が stdout 空・returncode 0 で終了。応答なし
+- **影響**: 全ての非対話実行（HEARTBEAT含む）が停止
+- **対処**: v2.1.79 にダウングレード
+- **ステータス**: 未修正（v2.1.84 も同様に動かない可能性あり）
+- **確認済み正常バージョン**: v2.1.79, v2.1.80
+
+### v2.1.59 — `--output-format stream-json` バグ
+- **発見日**: 2026-02-28
+- **症状**: stream-jsonフラグを付けると1ターンで即終了。TodoWriteだけ実行して終わる
+- **影響**: dashboard-dev、ikuji-threads等が全滅
+- **対処**: stream-jsonフラグを除去
+- **ステータス**: 以降のバージョンで修正済み
+
+## アップデート時の安全手順
+
+1. **現バージョンのバイナリを保持**（自動で残る）
+2. **アップデート前にテスト**: `claude -p "echo OK"` が返ることを確認
+3. **アップデート後も即テスト**: 同じコマンドで確認
+4. **失敗したら即ダウングレード**: シンボリックリンクを戻すだけ
+5. **HEARTBEAT/深夜タスク前にはアップデートしない**
+
+関連: [[Auth Expiry]] [[MCP Crash]]
