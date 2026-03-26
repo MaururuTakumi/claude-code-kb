@@ -49,7 +49,7 @@ claude -p "say OK"
 
 ## 教訓
 - 2026-03-25夜: OAuth切れ → daily-sync以降全停止 → AM Sweep未送信
-- 2026-03-19: OAuth切れ → mebuku-slack, mariko-threads ブロック
+- 2026-03-19: OAuth切れ → 複数のHEARTBEATタスクがブロック
 - **認証切れは「タスク1つの失敗」ではなく「全系統の停止」を意味する。最優先で対応すべき**
 
 関連: [[Version Bugs]] [[Fallback Design]] [[Monitoring]]

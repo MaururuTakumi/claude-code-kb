@@ -7,10 +7,10 @@
 
 ```bash
 # 利用可能なバージョン確認
-ls /Users/takumihayashi/.local/share/claude/versions/
+ls ~/.local/share/claude/versions/
 
 # バージョン切り替え（シンボリックリンク）
-ln -sf /Users/takumihayashi/.local/share/claude/versions/X.Y.Z /Users/takumihayashi/.local/bin/claude
+ln -sf ~/.local/share/claude/versions/X.Y.Z ~/.local/bin/claude
 
 # 現在のバージョン確認
 claude --version
