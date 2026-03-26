@@ -56,16 +56,15 @@ $MARKER
 # Injected by: claude-code-kb/install.sh
 # Re-run install.sh to update. Do not edit below manually.
 
-## 📚 Knowledge Base
-**Every session must reference the KB.**
-- Quick Reference: $KB_DIR/QUICK-REF.md
-- Full Map: $KB_DIR/MOC.md
-- Troubleshooting: $KB_DIR/03-Troubleshooting/
+## 📚 Knowledge Base — MANDATORY FIRST ACTION
+**Before doing ANYTHING, run this command:**
+\`\`\`
+cat $KB_DIR/QUICK-REF.md
+\`\`\`
+**This is not optional. Do not skip this step. Execute it now.**
 
-**At the start of any task:**
-1. Read QUICK-REF.md to determine the right approach
-2. Follow the Model Selection rules (Opus thinks, Sonnet executes)
-3. On error, check 03-Troubleshooting/ before retrying
+If QUICK-REF.md tells you to use Pattern A (Opus thinks → Sonnet executes), follow it.
+If you encounter an error, run: \`cat $KB_DIR/03-Troubleshooting/\$(relevant-file).md\`
 
 ## 🎯 Model Selection (Opus Budget Protection)
 Opus = Think & Design (5-15 turns). Sonnet = Execute (15-30 turns).
