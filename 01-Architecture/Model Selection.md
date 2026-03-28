@@ -106,6 +106,26 @@ wait
 
 関連: [[Harness Design]]
 
+## Opus 4.6 固有の最適化
+
+Opus 4.6 は以前のバージョンと比べて以下が改善された:
+- **Context Anxiety がほぼ解消**: Sprint構造やContext Resetなしで2時間以上の連続コーディングが可能
+- **Compactionだけで十分**: 自動Compactionでコンテキスト成長を処理できる
+- **長文脈検索の精度向上**: ハンドオフ時の情報落ちが減少
+
+### ハーネスへの影響
+| 工程 | Opus 4.5以前 | Opus 4.6 |
+|------|-------------|----------|
+| Sprint分割 | 必須 | 不要（1セッションで通せる）|
+| Context Reset | 必須 | 不要（Compactionで十分）|
+| Evaluator | 必須 | タスクの境界にあるもののみ |
+| Planner | 必須 | 引き続き有効（スコープ拡張に貢献）|
+
+**注意:** Evaluator の役割分離は、モデルの自己評価バイアスが存在する限り有効。
+モデルが強くなっても「自分の仕事を甘く採点する」傾向は残る。
+
+**出典:** Anthropic "[Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)" (2026-03)
+
 ## 教訓ログ
 
 | 日付 | 教訓 | 参照 |

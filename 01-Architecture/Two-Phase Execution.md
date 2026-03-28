@@ -10,6 +10,32 @@
 3. **品質を落とさない**: 判断部分はOpusが担保する
 4. **障害に強い**: Phase2が失敗してもPhase1の設計は残る
 
+## Context Reset vs Compaction
+
+長時間タスクでコンテキストが溢れた時の対処は2つある。使い分けが重要。
+
+### Compaction（要約して継続）
+- 会話履歴の前半を要約し、短縮した状態で同じセッションを継続
+- **メリット:** 連続性が保たれる、切り替えコストなし
+- **デメリット:** Context Anxiety（終盤で早く終わろうとする傾向）が解消しない
+- **Opus 4.6 では十分に機能する**（Context Anxiety がほぼ解消されたため）
+
+### Context Reset（完全リセット+ハンドオフ）
+- コンテキストを完全にクリアし、新しいエージェントを起動
+- 前のエージェントの状態を**構造化されたハンドオフファイル**で引き継ぐ
+- **メリット:** クリーンスレートで再出発。Context Anxiety が構造的に消える
+- **デメリット:** オーケストレーションが複雑化、ハンドオフの品質がボトルネックに
+- **Sonnet 4.5 以前のモデルでは必須だった**
+
+### 使い分け
+| モデル | 推奨 |
+|--------|------|
+| Opus 4.6 | Compaction で十分 |
+| Sonnet（長時間タスク）| Context Reset を検討 |
+| 2時間超の連続作業 | ファイルベースのチェックポイントで区切る |
+
+**出典:** Anthropic "[Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)" (2026-03)
+
 ## 実装パターン
 
 ### 基本形
