@@ -111,6 +111,42 @@ agent_a && agent_b
 
 ---
 
+## Agent Memory（3スコープ）
+
+サブエージェントに永続メモリを持たせることで、セッションを跨いで学習が蓄積される。
+
+### メモリスコープ
+
+| frontmatter | 保存先 | 共有範囲 | git |
+|------------|--------|---------|-----|
+| `memory: project` | `.claude/agent-memory/<name>/` | チーム共有 | committed |
+| `memory: local` | `.claude/agent-memory-local/<name>/` | 個人のみ | gitignored |
+| `memory: user` | `~/.claude/agent-memory/<name>/` | 全プロジェクト横断 | local |
+
+### 仕組み
+- サブエージェント起動時に MEMORY.md の先頭200行（最大25KB）が読み込まれる
+- サブエージェントが自動で書き込み・更新する（人間が書く必要なし）
+- メインセッションの auto memory とは完全に分離
+
+### 使い分け
+- `project`: コードレビューのパターン蓄積（チームで共有したい知見）
+- `local`: 個人的な学習ログ（他メンバーに見せなくていい）
+- `user`: 全プロジェクトで共通のレビュー基準・判断パターン
+
+### 例
+```markdown
+---
+name: code-reviewer
+description: Reviews code for correctness, security, and maintainability
+tools: Read, Grep, Glob
+memory: project
+---
+
+You are a senior code reviewer...
+```
+
+**出典:** [Explore the .claude directory](https://code.claude.com/docs/en/claude-directory)
+
 ## 参考実装
 - ECC: `agents/planner.md` — 詳細な計画書フォーマット
 - ECC: `agents/architect.md` — アーキテクチャ設計の委任パターン

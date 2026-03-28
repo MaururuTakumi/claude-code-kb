@@ -180,6 +180,12 @@
   },
   "active": "93453944e3d1f611",
   "lastOpenFiles": [
+    "Sources/2026-03-28-claude-directory-official.md",
+    "05-Skills/Skills Reference.md",
+    "04-Operations/Settings Precedence.md",
+    "01-Architecture/Memory Architecture.md",
+    "04-Operations/Worktree Management.md",
+    "02-Patterns/Output Styles.md",
     "Sources/2026-03-28-anthropic-harness-design-long-running.md",
     "02-Patterns/Content Generation.md",
     "04-Operations/Hooks Design.md",
@@ -208,11 +214,6 @@
     "03-Troubleshooting",
     "02-Patterns",
     "01-Architecture/Two-Phase Execution.md",
-    "01-Architecture/Model Selection.md",
-    "01-Architecture/CLAUDE.md Design.md",
-    "01-Architecture",
-    "QUICK-REF.md",
-    "Operations/KB Lifecycle.md",
-    "Sources/community/2026-03-26-thariq-claude-code-tips.md"
+    "01-Architecture"
   ]
 }
