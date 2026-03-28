@@ -180,6 +180,8 @@
   },
   "active": "93453944e3d1f611",
   "lastOpenFiles": [
+    "Sources/2026-03-28-gyakuse-skill-orchestration.md",
+    "05-Skills/Orchestration Patterns.md",
     "Sources/2026-03-28-claude-directory-official.md",
     "05-Skills/Skills Reference.md",
     "04-Operations/Settings Precedence.md",
@@ -210,10 +212,8 @@
     "04-Operations",
     "03-Troubleshooting/Version Bugs.md",
     "03-Troubleshooting/MCP Crash.md",
-    "03-Troubleshooting/Auth Expiry.md",
     "03-Troubleshooting",
     "02-Patterns",
-    "01-Architecture/Two-Phase Execution.md",
     "01-Architecture"
   ]
 }
