@@ -26,6 +26,7 @@
 - [[Auth Expiry]] — OAuth切れの検知・復旧・予防
 - [[MCP Crash]] — MCP不調パターンと対処法
 - [[Version Bugs]] — バージョン別の既知バグ
+- [[Usage Limits]] — 利用上限到達時の手動フォールバック運用
 - [[Timeout Patterns]] — タイムアウト設計・SIGTERM対策
 - [[npx Cache]] — npxキャッシュ問題と解決策
 
