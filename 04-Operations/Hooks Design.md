@@ -144,7 +144,33 @@ Hookの実行時間が長いとセッションが遅くなる。
 [[ "$PROJECT_PATH" != *"auto-sns"* ]] && exit 0
 ```
 
-### 4. 環境変数でプロファイル制御（ECCパターン）
+### 4. 通知APIは rate limit 前提で設計する
+Telegram などの通知面は、全体停止ではなく **HTTP 429** で詰まることがある。
+そのため、Hook 側で「送れなかった = 障害」と即断しない。
+
+```bash
+RESP=$(mktemp)
+HTTP_CODE=$(curl -s -o "$RESP" -w "%{http_code}" \
+  -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+  -d "chat_id=${CHAT_ID}" \
+  --data-urlencode "text=${MSG}")
+
+if [ "$HTTP_CODE" = "429" ]; then
+  echo "rate-limited: $(cat "$RESP")" >&2
+  # 低優先度通知なら諦める / 重要通知なら後続ジョブで再送
+elif [ "$HTTP_CODE" -ge 400 ] 2>/dev/null; then
+  echo "notification failed: $(cat "$RESP")" >&2
+fi
+rm -f "$RESP"
+```
+
+ポイント:
+- **HTTP status と response body を捨てない**
+- 429 とその他の失敗を分けて扱う
+- 低優先度通知は間引く（短命セッション・途中経過など）
+- 重要通知だけ再送対象にする
+
+### 5. 環境変数でプロファイル制御（ECCパターン）
 本番/開発で動作を切り替える。
 ```bash
 # ECC_HOOK_PROFILE=minimal|standard|strict
