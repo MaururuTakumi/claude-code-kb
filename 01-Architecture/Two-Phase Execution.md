@@ -41,13 +41,13 @@
 ### 基本形
 ```bash
 # Phase 1: Opus（思考・設計）
-claude --dangerously-skip-permissions --max-turns 10 \
+claude --permission-mode bypassPermissions --max-turns 10 \
   -p "以下のタスクの実行計画を作成し、/tmp/task-plan.md に書き出せ。
       Sonnetが迷わず実行できるレベルの具体性で書くこと。
       タスク: [具体的な指示]"
 
 # Phase 2: Sonnet（実行）
-claude --dangerously-skip-permissions --model sonnet --max-turns 30 \
+claude --permission-mode bypassPermissions --model sonnet --max-turns 30 \
   -p "/tmp/task-plan.md を読んで、その指示通りに実行せよ。
       判断が必要な場面に遭遇したら停止して報告せよ。"
 ```
