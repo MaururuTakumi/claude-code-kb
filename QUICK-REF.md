@@ -67,6 +67,7 @@ Sonnetが**1秒も迷わない**具体性で書く。
 |------|------|------|
 | `-p` が無応答 | バージョンバグ | ダウングレード [[03-Troubleshooting/Version Bugs]] |
 | OAuth expired | 認証切れ | `claude auth login` [[03-Troubleshooting/Auth Expiry]] |
+| ByteRover cloud sync失敗 | 認証/同期ノイズ | `brv status` → `query/curate` と `push/pull` を切り分ける [[03-Troubleshooting/ByteRover Cloud Sync Noise]] |
 | MCP接続後に即死 | 複数MCP同時init | 1サーバーずつ [[03-Troubleshooting/MCP Crash]] |
 | タイムアウト | ターン数/時間不足 | timeout延長 [[03-Troubleshooting/Timeout Patterns]] |
 
