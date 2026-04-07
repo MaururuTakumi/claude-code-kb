@@ -180,6 +180,10 @@
   },
   "active": "93453944e3d1f611",
   "lastOpenFiles": [
+    "03-Troubleshooting/ByteRover Cloud Sync Noise.md",
+    "04-Operations/weekly-checks/2026-04-05.md",
+    "04-Operations/weekly-checks",
+    "03-Troubleshooting/Usage Limits.md",
     "Sources/2026-03-28-gyakuse-skill-orchestration.md",
     "05-Skills/Orchestration Patterns.md",
     "Sources/2026-03-28-claude-directory-official.md",
@@ -208,10 +212,7 @@
     "_templates/PROJECT-SETUP.md",
     "Architecture/CLAUDE.md Design.md",
     "05-Skills",
-    "04-Operations/KB Lifecycle.md",
     "04-Operations",
-    "03-Troubleshooting/Version Bugs.md",
-    "03-Troubleshooting/MCP Crash.md",
     "03-Troubleshooting",
     "02-Patterns",
     "01-Architecture"
