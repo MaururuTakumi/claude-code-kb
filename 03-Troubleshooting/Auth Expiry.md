@@ -5,6 +5,7 @@
 
 ## 症状
 - `OAuth token has expired. Please obtain a new token or refresh your existing token.`
+- `Your organization does not have access to Claude`
 - `claude -p "..."` が無応答（認証切れ + バージョンバグの複合の場合あり）
 
 ## 検知方法
@@ -42,14 +43,16 @@ claude -p "say OK"
 
 ## フォールバック
 
-認証切れでClaude Codeが使えない間:
+認証切れや organization access エラーでClaude Codeが使えない間:
 - たくみん（OpenClaw）が直接実行できるタスクは代替実行
 - SNS投稿: [[Fallback Design]] のフォールバック投稿を使用
 - 分析: Codex で代替（OAuth認証は別系統）
+- auto-memory: 定刻実行が失敗しても、その日の `memory/YYYY-MM-DD.md` を見て「決定事項 / 学んだこと / 重要事項 / 進捗サマリー」を手動で補完する
 
 ## 教訓
 - 2026-03-25夜: OAuth切れ → daily-sync以降全停止 → AM Sweep未送信
 - 2026-03-19: OAuth切れ → 複数のHEARTBEATタスクがブロック
+- 2026-04-19: auto-memory が `Your organization does not have access to Claude` で失敗。定刻ジョブ自体は走っても抽出部分が落ちるため、手動補完フローが必要
 - **認証切れは「タスク1つの失敗」ではなく「全系統の停止」を意味する。最優先で対応すべき**
 
 関連: [[Version Bugs]] [[Fallback Design]] [[Monitoring]]
