@@ -49,6 +49,7 @@ brv providers connect byterover
 
 ## 教訓
 - 2026-04-06: auth / cloud sync の失敗が複数タスクで再発したが、作業自体はローカル継続で完了した
+- 2026-04-22: この環境では provider 接続後でも `Authentication required for cloud sync` が `brv query` / `brv curate` 側に混ざることがあった。heartbeat の必須経路に ByteRover 成功を置かず、失敗時は memory / KB ローカル記録へ即フォールバックする
 - ノイズ源は「ByteRover全停止」ではなく「cloud sync 系の不安定さ」だった
 - 障害分類を誤ると、不要なエスカレーションや運用停止を招く
 
