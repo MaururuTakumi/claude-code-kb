@@ -55,6 +55,8 @@ claude -p "say OK"
 - 2026-04-19: auto-memory が `Your organization does not have access to Claude` で失敗。定刻ジョブ自体は走っても抽出部分が落ちるため、手動補完フローが必要
 - 2026-04-22: `scripts/auto-memory.sh` の Claude Code 呼び出しが再度失敗。session jsonl と `memory/YYYY-MM-DD.md` を直接見て「決定事項 / 学んだこと / 重要事項 / 進捗サマリー」を手動で埋めれば、その日の運用知識は維持できる
 - 2026-04-22: AGA朝投稿でも `Your organization does not have access to Claude` が発生したが、OpenClaw側で手動ドラフト作成 + Typefully publish に切り替えて公開まで復旧できた
+- 2026-04-23: Claude organization access エラーが朝夜を通して断続的に発生。auto-memory, AGA投稿生成, Obsidian同期系は Claude 抽出や生成を諦め、`memory/YYYY-MM-DD.md`・session logs・既存成果物を一次ソースにした手動補完へ切り替えると運用を止めずに回せた
+- 2026-04-23: AGA夜運用では Claude 生成失敗後も、競合スキャン結果から OpenClaw 側で引用RT候補, 手動ドラフト, SEO記事まで連結できた。Claude-down 時は「生成不能で終了」ではなく「既存リサーチを材料に軽量フォールバック連鎖へ落とす」が有効
 - **認証切れは「タスク1つの失敗」ではなく「全系統の停止」を意味する。最優先で対応すべき**
 
 関連: [[Version Bugs]] [[Fallback Design]] [[Monitoring]]
