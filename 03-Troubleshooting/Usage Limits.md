@@ -67,6 +67,8 @@
 - 2026-04-23: Claude organization access エラーと xAI 429 / no-data が同日に重なっても、検索系は raw JSON や既存スキャン結果を証跡として残し、生成系は OpenClaw 側手動ドラフトへ縮約すれば主要ラインを維持できた。
 - 2026-04-23: 22時台の同期系（daily-sync, Omi, Obsidian, reality-sync）は Claude 抽出失敗を前提に session logs と成果物確認で救済した方が安全。夜間同期系は「Claude落ち前提の救済フロー」を標準装備する。
 - 2026-04-23: AGA夜運用は competitor scan → quote RT候補 → 手動ドラフト → SEO記事化まで連結できた。利用上限時は重い再実行を繰り返すより、既存リサーチを横展開して複数成果物へ再利用する方が強い。
+- 2026-04-24: `x-reply-check` は xAI credits / monthly limit 到達でも、API失敗をそのまま全停止扱いせず、ログイン済みブラウザの mentions を見に行く fallback を持たせると返信要否の判定までは維持できる。
+- 2026-04-24: SNS運用では「publish 成功」と「engage 失敗」を別ステータスで記録する。公開後の後続処理だけが落ちた時に、投稿自体まで blocked 扱いすると watchdog と日次レビューが歪む。
 
 ### パターンA: 定例ノート系は「要点のみ手動化」
 - 自動実行が止まっても、その日の優先事項・未完了事項・翌日の重要イベントだけは手で残す
