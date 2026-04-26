@@ -69,6 +69,10 @@
 - 2026-04-23: AGA夜運用は competitor scan → quote RT候補 → 手動ドラフト → SEO記事化まで連結できた。利用上限時は重い再実行を繰り返すより、既存リサーチを横展開して複数成果物へ再利用する方が強い。
 - 2026-04-24: `x-reply-check` は xAI credits / monthly limit 到達でも、API失敗をそのまま全停止扱いせず、ログイン済みブラウザの mentions を見に行く fallback を持たせると返信要否の判定までは維持できる。
 - 2026-04-24: SNS運用では「publish 成功」と「engage 失敗」を別ステータスで記録する。公開後の後続処理だけが落ちた時に、投稿自体まで blocked 扱いすると watchdog と日次レビューが歪む。
+- 2026-04-26: xAI credits / monthly spending limit 到達が複数タスクに波及しても、Chrome mentions fallback・X API・Web/公式ソース・既存リサーチの手動キュレーションを組み合わせれば、返信確認・投稿準備・週次レビューは維持できる。
+- 2026-04-26: 生成スクリプトが Claude organization access エラーで落ちても、方針とフォーマットが固定済みなら「手動ドラフト作成 → 既存 publish スクリプト/APIで実行」に縮約して公開枠を守れる。生成失敗と配信失敗は必ず分けて記録する。
+- 2026-04-26: browser automation が `Failed to start session server` で落ちる日は、live dashboard / engage は blocked として切り分け、既存 analytics・sales log・published artifacts を使ったファイルベースレビューに切り替える。レビュー全体を止めない。
+- 2026-04-26: watchdog recovery は「state 未記録」と「artifact 既存」を照合し、artifact があるものは state 補完、artifact がないものだけ最小成果物を再生成する。全タスクを再実行しない方が速く安全。
 
 ### パターンA: 定例ノート系は「要点のみ手動化」
 - 自動実行が止まっても、その日の優先事項・未完了事項・翌日の重要イベントだけは手で残す
