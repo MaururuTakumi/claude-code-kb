@@ -73,6 +73,7 @@
 - 2026-04-26: 生成スクリプトが Claude organization access エラーで落ちても、方針とフォーマットが固定済みなら「手動ドラフト作成 → 既存 publish スクリプト/APIで実行」に縮約して公開枠を守れる。生成失敗と配信失敗は必ず分けて記録する。
 - 2026-04-26: browser automation が `Failed to start session server` で落ちる日は、live dashboard / engage は blocked として切り分け、既存 analytics・sales log・published artifacts を使ったファイルベースレビューに切り替える。レビュー全体を止めない。
 - 2026-04-26: watchdog recovery は「state 未記録」と「artifact 既存」を照合し、artifact があるものは state 補完、artifact がないものだけ最小成果物を再生成する。全タスクを再実行しない方が速く安全。
+- 2026-04-27: xAI credits / monthly spending limit 到達時でも、`x-viral-ai-search` は本文を `（取得データなし）` にして raw JSON のエラー本文を証跡保存し、`x-reply-check` はログイン済みブラウザの mentions fallback で未返信 0 件まで確認できた。検索API制限時は raw 保存 + browser fallback を標準ルートにする。
 
 ### パターンA: 定例ノート系は「要点のみ手動化」
 - 自動実行が止まっても、その日の優先事項・未完了事項・翌日の重要イベントだけは手で残す
