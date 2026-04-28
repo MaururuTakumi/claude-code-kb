@@ -94,7 +94,36 @@ Evaluator (Opus or Sonnet)
 
 ---
 
-## パターン4: 品質ゲート
+## パターン4: Publish対象の固定（No Implicit Latest）
+
+外部公開を伴う自動化では、publishスクリプトに「最新ドラフトを適当に拾わせる」設計を避ける。
+古い draft / stale artifact が残っていると、意図しない投稿や重複公開につながる。
+
+推奨フロー:
+
+1. 生成時に publish 対象のファイルパスまたはIDを明示する
+2. publish 直前に本文・日時・アカウントを再検証する
+3. 成功後は `published/` へ移動し、再実行で拾われない状態にする
+4. 失敗時は `failed/` またはログに対象IDを残し、「何が未公開か」を曖昧にしない
+
+```bash
+DRAFT_FILE="drafts/2026-04-28-2100.md"
+
+# publish前の最低限の固定チェック
+test -f "$DRAFT_FILE" || exit 1
+grep -q "publish_account:" "$DRAFT_FILE" || exit 1
+grep -q "scheduled_slot:" "$DRAFT_FILE" || exit 1
+
+./publish.sh "$DRAFT_FILE"
+mkdir -p published
+mv "$DRAFT_FILE" published/
+```
+
+**アンチパターン:** `ls drafts/*.md | tail -1` のように、ファイル名やmtimeだけで公開対象を決める。
+
+---
+
+## パターン5: 品質ゲート
 
 生成後の検証ステップ。Evaluatorに渡す前に自動チェックできるもの。
 

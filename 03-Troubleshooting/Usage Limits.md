@@ -74,6 +74,8 @@
 - 2026-04-26: browser automation が `Failed to start session server` で落ちる日は、live dashboard / engage は blocked として切り分け、既存 analytics・sales log・published artifacts を使ったファイルベースレビューに切り替える。レビュー全体を止めない。
 - 2026-04-26: watchdog recovery は「state 未記録」と「artifact 既存」を照合し、artifact があるものは state 補完、artifact がないものだけ最小成果物を再生成する。全タスクを再実行しない方が速く安全。
 - 2026-04-27: xAI credits / monthly spending limit 到達時でも、`x-viral-ai-search` は本文を `（取得データなし）` にして raw JSON のエラー本文を証跡保存し、`x-reply-check` はログイン済みブラウザの mentions fallback で未返信 0 件まで確認できた。検索API制限時は raw 保存 + browser fallback を標準ルートにする。
+- 2026-04-28: 外部LLMの organization access error と検索APIの monthly spending limit が同時に出ても、既存のローカル成果物・ブラウザ fallback・手動フォーマット固定で日次分析や返信確認を継続できた。複数プロバイダーが同時に落ちる日は「再実行」より「最小成果物の手動確定」を優先する。
+- 2026-04-28: 会話ログや音声ログが 0 件の日でも、空振りを失敗扱いにせず「勝ち筋 / 詰まり / 次回確認」の3点だけを残せば、翌日の改善ループは途切れない。no-data の日は要約品質より、欠損を明示して次アクションを固定することを優先する。
 
 ### パターンA: 定例ノート系は「要点のみ手動化」
 - 自動実行が止まっても、その日の優先事項・未完了事項・翌日の重要イベントだけは手で残す

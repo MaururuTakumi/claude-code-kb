@@ -33,6 +33,13 @@ claude --version
 - **対処**: stream-jsonフラグを除去
 - **ステータス**: 以降のバージョンで修正済み
 
+### Shell path / shebang portability — `bad interpreter`
+- **発見日**: 2026-04-28
+- **症状**: 生成・publish系スクリプトが `bad interpreter: /opt/homebrew/bin/bash` で停止
+- **原因**: 実行環境によって bash の場所が異なる、または Homebrew パス前提が崩れる
+- **対処**: shebang は原則 `#!/usr/bin/env bash` に寄せる。特定パスが必要な場合は、実行前チェックで存在確認して明示エラーにする
+- **予防**: cron / heartbeat に載せるスクリプトは、手元の対話シェルではなく非対話環境で `bash -n` と smoke test を通す
+
 ## アップデート時の安全手順
 
 1. **現バージョンのバイナリを保持**（自動で残る）
