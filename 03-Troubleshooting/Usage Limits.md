@@ -77,6 +77,7 @@
 - 2026-04-28: 外部LLMの organization access error と検索APIの monthly spending limit が同時に出ても、既存のローカル成果物・ブラウザ fallback・手動フォーマット固定で日次分析や返信確認を継続できた。複数プロバイダーが同時に落ちる日は「再実行」より「最小成果物の手動確定」を優先する。
 - 2026-04-28: 会話ログや音声ログが 0 件の日でも、空振りを失敗扱いにせず「勝ち筋 / 詰まり / 次回確認」の3点だけを残せば、翌日の改善ループは途切れない。no-data の日は要約品質より、欠損を明示して次アクションを固定することを優先する。
 - 2026-05-01: X API が複数アカウントで 403 になっても、ログイン済みブラウザの競合閲覧に切り替えれば投稿パターン抽出は継続できる。xAI credits exhausted は raw JSON にエラー証跡を残し、検索系タスクは no-data 前提の fallback で進める。
+- 2026-05-07: xAI credits/monthly limit (HTTP 429) が `x_search` / reply生成 / AGA atlas / blog draft など複数機能を同時に止める日は、1) API/raw error 保存、2) Chrome CDP fallback (port 9224)、3) browser-use real browser fallback (Default profile) の三段階で確認する。CDP refused まで重なる場合でも、ログイン済み実ブラウザで mentions を直接見るルートを残すと返信確認と最低運用ラインを維持できる。
 
 ### パターンA: 定例ノート系は「要点のみ手動化」
 - 自動実行が止まっても、その日の優先事項・未完了事項・翌日の重要イベントだけは手で残す
