@@ -78,6 +78,7 @@
 - 2026-04-28: 会話ログや音声ログが 0 件の日でも、空振りを失敗扱いにせず「勝ち筋 / 詰まり / 次回確認」の3点だけを残せば、翌日の改善ループは途切れない。no-data の日は要約品質より、欠損を明示して次アクションを固定することを優先する。
 - 2026-05-01: X API が複数アカウントで 403 になっても、ログイン済みブラウザの競合閲覧に切り替えれば投稿パターン抽出は継続できる。xAI credits exhausted は raw JSON にエラー証跡を残し、検索系タスクは no-data 前提の fallback で進める。
 - 2026-05-07: xAI credits/monthly limit (HTTP 429) が `x_search` / reply生成 / AGA atlas / blog draft など複数機能を同時に止める日は、1) API/raw error 保存、2) Chrome CDP fallback (port 9224)、3) browser-use real browser fallback (Default profile) の三段階で確認する。CDP refused まで重なる場合でも、ログイン済み実ブラウザで mentions を直接見るルートを残すと返信確認と最低運用ラインを維持できる。
+- 2026-05-08: xAI credits/monthly spending limit が継続しても、main reply check / AGA atlas / viral search は Chrome 9224 fallback・通常X API fetch・X live searchで運用継続できた。API制限時は「検索APIが落ちた」だけを失敗扱いし、返信確認や公開確認などユーザー価値に直結する最終判定はブラウザ/通常APIで救済する。
 
 ### パターンA: 定例ノート系は「要点のみ手動化」
 - 自動実行が止まっても、その日の優先事項・未完了事項・翌日の重要イベントだけは手で残す

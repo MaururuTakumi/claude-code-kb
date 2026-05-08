@@ -51,6 +51,7 @@ brv providers connect byterover
 - 2026-04-06: auth / cloud sync の失敗が複数タスクで再発したが、作業自体はローカル継続で完了した
 - 2026-04-22: この環境では provider 接続後でも `Authentication required for cloud sync` が `brv query` / `brv curate` 側に混ざることがあった。heartbeat の必須経路に ByteRover 成功を置かず、失敗時は memory / KB ローカル記録へ即フォールバックする
 - 2026-05-01: `brv query` は使えても、`curate` / cloud sync 系の認証エラーが再発した。同期成功を待たず、local 成果物・memory・KBへの保存を優先する運用が実務的。
+- 2026-05-08: `brv query` は通常利用できる一方、`brv curate` は cloud auth要求 / response parsing failure / instance crashed が混在して不安定だった。重要教訓は `brv curate` 成功待ちにせず、まず `.brv/context-tree/` またはGit管理KBへ手動保存してから後で同期する。
 - ノイズ源は「ByteRover全停止」ではなく「cloud sync 系の不安定さ」だった
 - 障害分類を誤ると、不要なエスカレーションや運用停止を招く
 

@@ -40,6 +40,13 @@ claude --version
 - **対処**: shebang は原則 `#!/usr/bin/env bash` に寄せる。特定パスが必要な場合は、実行前チェックで存在確認して明示エラーにする
 - **予防**: cron / heartbeat に載せるスクリプトは、手元の対話シェルではなく非対話環境で `bash -n` と smoke test を通す
 
+### Agent max-turns / shebang同時故障 — 生成と配信を分離する
+- **発見日**: 2026-05-08
+- **症状**: `scripts/direct-p/aga-x-generate.sh` が `Reached max turns (8)` で失敗し、同系統のスクリプトで shebang 破損も混在した
+- **影響**: 生成フェーズは止まるが、publish API / Typefully 側が生きていれば投稿枠自体は守れる
+- **対処**: 1) stale draft を確認、2) 手動で最小ドラフトを作成、3) publish script/APIで配信、4) 公開URLとpublishedファイルを保存する
+- **予防**: cron投入前に `bash -n` / dry-run / max-turns時の終了コード確認を行い、生成失敗と配信失敗を別ステータスで記録する
+
 ## アップデート時の安全手順
 
 1. **現バージョンのバイナリを保持**（自動で残る）
