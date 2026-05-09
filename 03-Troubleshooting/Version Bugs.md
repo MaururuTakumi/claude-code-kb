@@ -38,6 +38,7 @@ claude --version
 - **症状**: 生成・publish系スクリプトが `bad interpreter: /opt/homebrew/bin/bash` で停止
 - **原因**: 実行環境によって bash の場所が異なる、または Homebrew パス前提が崩れる
 - **対処**: shebang は原則 `#!/usr/bin/env bash` に寄せる。特定パスが必要な場合は、実行前チェックで存在確認して明示エラーにする
+- **暫定回避**: shebang が壊れている既存スクリプトは、修正前でも `/bin/bash path/to/script.sh` のように明示的に bash へ渡すと実行できる場合がある
 - **予防**: cron / heartbeat に載せるスクリプトは、手元の対話シェルではなく非対話環境で `bash -n` と smoke test を通す
 
 ### Agent max-turns / shebang同時故障 — 生成と配信を分離する

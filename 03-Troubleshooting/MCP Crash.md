@@ -22,6 +22,13 @@
 - **症状**: タイムアウトまたはメモリ不足でClaude Codeが停止
 - **対処**: 直接URLを開かず、/notifications/mentions 等の軽量ページから取得
 
+### パターン4: Chrome user profile が attach 可能に見えて tabs 取得で失敗
+- **発見日**: 2026-05-09
+- **症状**: browser / Chrome profile の status では接続可能に見えるが、tabs 取得時に `DevToolsActivePort` エラーが出て既存ログインセッションを安定確認できない
+- **影響**: 承認一覧やログイン済み画面の live 確認が不安定になる
+- **対処**: その profile を前提にした確認を続けず、Chrome CDP の固定ポート、browser-use real browser fallback、API/ファイル成果物確認に切り替える
+- **教訓**: 「status が OK」だけでログイン済みブラウザ操作可能とみなさない。tabs / lightweight page 取得まで通してから live browser fallback に使う
+
 ## MCP健全性チェック
 
 ```bash
