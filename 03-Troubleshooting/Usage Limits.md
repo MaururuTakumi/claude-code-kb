@@ -80,6 +80,7 @@
 - 2026-05-07: xAI credits/monthly limit (HTTP 429) が `x_search` / reply生成 / AGA atlas / blog draft など複数機能を同時に止める日は、1) API/raw error 保存、2) Chrome CDP fallback (port 9224)、3) browser-use real browser fallback (Default profile) の三段階で確認する。CDP refused まで重なる場合でも、ログイン済み実ブラウザで mentions を直接見るルートを残すと返信確認と最低運用ラインを維持できる。
 - 2026-05-08: xAI credits/monthly spending limit が継続しても、main reply check / AGA atlas / viral search は Chrome 9224 fallback・通常X API fetch・X live searchで運用継続できた。API制限時は「検索APIが落ちた」だけを失敗扱いし、返信確認や公開確認などユーザー価値に直結する最終判定はブラウザ/通常APIで救済する。
 - 2026-05-09: xAI credits/monthly spending limit が続くと、x-viral-ai-search / x-reply-check / atlas 系がまとめて失敗する。reply-check は Chrome notifications fallback で代替し、viral search は raw JSON に API エラーを保存したうえで empty draft / no-data 成果物として確定する。制限解除まで「API再実行」より「エラー証跡 + ブラウザ/通常API fallback」を優先する。
+- 2026-05-10: xAI credits/monthly spending limit と Chrome port 9224 connection refused が同時に続く日は、OpenClaw browser で X mentions と対象スレッドを直接確認するのが最後の信頼経路になる。reply-check は「API→Chrome/CDP→OpenClaw browser」の順に縮退し、各段階のエラーと最終判定を suggested.md / heartbeat-state に残す。
 
 ### パターンA: 定例ノート系は「要点のみ手動化」
 - 自動実行が止まっても、その日の優先事項・未完了事項・翌日の重要イベントだけは手で残す
