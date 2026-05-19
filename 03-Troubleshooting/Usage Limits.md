@@ -84,6 +84,7 @@
 - 2026-05-11: xAI credits/monthly spending limit と Chrome port 9224 connection refused が複数スロット連続で解消しない場合でも、OpenClaw browser fallback で mentions と対象スレッドを直接確認すれば「未返信候補の継続有無」までは判定できる。API復旧待ちで同じ検索を回し続けず、最終判定・通知 messageId・heartbeat-state を残して次スロットへ渡す。
 - 2026-05-12: 夜間同期チェーンでは `obsidian-connector` が同日Daily noteの存在を前提にするため、`daily-sync → obsidian-connector → reality-sync → auto-memory` の順で実行する。connector が先に走って Daily note 不在でブロックされた場合は、daily-sync 完了後に connector だけ再実行して接続ノートを完成させる。
 - 2026-05-14: `hb-obsidian-connector` が Daily note 不在でブロックされても、`omi-first-principles` は `tmp/omi-YYYY-MM-DD.json` と既存メモリから manual fallback で Insights を生成できる。夜間同期は「Daily依存タスク」と「tmp/memoryだけで救済できるタスク」を分け、片方の blocked をチェーン全体の失敗にしない。
+- 2026-05-19: `hb-obsidian-connector` は `Daily/YYYY-MM-DD.md` と `Insights/YYYY-MM-DD_conversation-analysis.md` の両方が無いと即 blocked になる。`daily-sync` で Daily note と会話サマリーを先に作り、必要なら connector を再実行して blocked artifact を完成版に置き換える。
 
 ### パターンA: 定例ノート系は「要点のみ手動化」
 - 自動実行が止まっても、その日の優先事項・未完了事項・翌日の重要イベントだけは手で残す
